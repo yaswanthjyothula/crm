@@ -68,9 +68,15 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenTrial }) => {
     <section id="pricing" className="py-16 sm:py-24 px-4 sm:px-6 max-w-7xl mx-auto">
       
       {/* Section Title */}
-      <div className="text-center max-w-3xl mx-auto mb-10">
-        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-brand-500/10 border border-brand-500/20 text-xs font-bold text-brand-700 uppercase tracking-widest mb-3">
-          <Zap className="w-3.5 h-3.5 text-brand-600" />
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true, margin: "-100px" }}
+        transition={springConfig}
+        className="text-center max-w-3xl mx-auto mb-10"
+      >
+        <div className="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-slate-900/5 border border-slate-900/10 text-xs font-bold text-slate-800 uppercase tracking-widest mb-3">
+          <Zap className="w-3.5 h-3.5 text-slate-900" />
           Transparent & Predictable Pricing
         </div>
         <h2 className="font-display text-3xl sm:text-4xl md:text-5xl font-extrabold tracking-tight text-slate-900">
@@ -81,40 +87,57 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenTrial }) => {
         </p>
 
         {/* Monthly vs Annual Toggle */}
-        <div className="mt-8 inline-flex items-center p-1 rounded-full bg-slate-100 border border-slate-200 shadow-inner">
+        <div className="mt-8 inline-flex items-center p-1.5 rounded-full bg-slate-100 border border-slate-200 shadow-inner relative">
           <button
             onClick={() => setIsAnnual(false)}
-            className={`px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-colors ${
-              !isAnnual ? 'bg-white text-slate-900 shadow' : 'text-slate-600 hover:text-slate-900'
+            className={`relative z-10 px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-colors ${
+              !isAnnual ? 'text-slate-900 font-bold' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
+            {!isAnnual && (
+              <motion.span
+                layoutId="pricingTogglePill"
+                transition={springConfig}
+                className="absolute inset-0 bg-white rounded-full shadow-md -z-10"
+              />
+            )}
             Monthly Billing
           </button>
 
           <button
             onClick={() => setIsAnnual(true)}
-            className={`relative px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1.5 ${
-              isAnnual ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:text-slate-900'
+            className={`relative z-10 px-5 py-2 rounded-full text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1.5 ${
+              isAnnual ? 'text-white font-bold' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
+            {isAnnual && (
+              <motion.span
+                layoutId="pricingTogglePill"
+                transition={springConfig}
+                className="absolute inset-0 bg-slate-900 rounded-full shadow-md -z-10"
+              />
+            )}
             <span>Annual Billing</span>
             <span className="px-2 py-0.5 rounded-full text-[10px] font-extrabold bg-emerald-400 text-slate-950">
               Save 20%
             </span>
           </button>
         </div>
-      </div>
+      </motion.div>
 
       {/* Pricing Cards Grid */}
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch">
-        {tiers.map((tier) => {
+        {tiers.map((tier, idx) => {
           const price = isAnnual ? tier.annualPrice : tier.monthlyPrice;
 
           return (
             <motion.div
               key={tier.id}
-              whileHover={{ y: -6 }}
-              transition={springConfig}
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              whileHover={{ y: -8, scale: 1.02 }}
+              transition={{ ...springConfig, delay: idx * 0.1 }}
               className={`rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 relative ${
                 tier.highlighted
                   ? 'glass-panel bg-white border-2 border-slate-900 shadow-2xl shadow-slate-900/15 scale-[1.03]'
@@ -123,7 +146,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenTrial }) => {
             >
               {tier.highlighted && (
                 <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full bg-slate-900 text-white text-[11px] font-extrabold uppercase tracking-wider shadow-md flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-slate-300 animate-pulse" />
+                  <Sparkles className="w-3 h-3 text-emerald-400 animate-pulse" />
                   {tier.badge}
                 </div>
               )}
@@ -149,10 +172,10 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenTrial }) => {
                 <div className="space-y-3 pt-4 border-t border-slate-200">
                   <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">Included Features</span>
                   <ul className="space-y-2.5">
-                    {tier.features.map((feat, idx) => (
-                      <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700">
+                    {tier.features.map((feat, fIdx) => (
+                      <li key={fIdx} className="flex items-start gap-2.5 text-xs text-slate-700">
                         <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
-                          tier.highlighted ? 'bg-slate-900/10 text-slate-900' : 'bg-slate-100 text-emerald-600'
+                          tier.highlighted ? 'bg-slate-900 text-white' : 'bg-slate-100 text-emerald-600'
                         }`}>
                           <Check className="w-3 h-3" />
                         </div>
@@ -166,8 +189,8 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenTrial }) => {
               {/* Action Button */}
               <div className="mt-8 pt-4">
                 <motion.button
-                  whileHover={{ scale: 1.03 }}
-                  whileTap={{ scale: 0.97 }}
+                  whileHover={{ scale: 1.04 }}
+                  whileTap={{ scale: 0.96 }}
                   transition={springConfig}
                   onClick={onOpenTrial}
                   className={`w-full py-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all ${
