@@ -1,5 +1,3 @@
-export type ModeType = 'gym' | 'restaurant';
-
 export interface GymMember {
   id: string;
   name: string;
@@ -10,19 +8,6 @@ export interface GymMember {
   scanMethod: 'QR Camera' | 'NFC Pass' | 'Phone Lookup';
   visitsThisMonth: number;
   streak: number;
-}
-
-export interface RestaurantTable {
-  id: number;
-  label: string;
-  seats: number;
-  status: 'available' | 'seated' | 'bill_printed' | 'reserved';
-  guestName?: string;
-  partySize?: number;
-  seatedDuration?: string;
-  currentBill?: number;
-  notes?: string;
-  tags?: string[];
 }
 
 export interface WhatsAppNode {
