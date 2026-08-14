@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { ModeType } from './types/crm';
 import { Navbar } from './components/Navbar';
 import { Hero } from './components/Hero';
 import { Pricing } from './components/Pricing';
@@ -7,19 +6,23 @@ import { Footer } from './components/Footer';
 import { WalkthroughModal } from './components/WalkthroughModal';
 import { TrialModal } from './components/TrialModal';
 import { GymSuperAdminPanel } from './components/GymSuperAdminPanel';
+import { GymTenantPanel } from './components/GymTenantPanel';
 
 export function App() {
-  const [activeMode, setActiveMode] = useState<ModeType>('gym');
   const [isTrialOpen, setIsTrialOpen] = useState(false);
   const [isWalkthroughOpen, setIsWalkthroughOpen] = useState(false);
-  const [isSuperAdminLoggedIn, setIsSuperAdminLoggedIn] = useState(false);
+  const [userRole, setUserRole] = useState<'superadmin' | 'tenant' | null>(null);
 
-  if (isSuperAdminLoggedIn) {
-    return <GymSuperAdminPanel onSignOut={() => setIsSuperAdminLoggedIn(false)} />;
+  if (userRole === 'superadmin') {
+    return <GymSuperAdminPanel onSignOut={() => setUserRole(null)} />;
+  }
+
+  if (userRole === 'tenant') {
+    return <GymTenantPanel onSignOut={() => setUserRole(null)} />;
   }
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-brand-500 selection:text-white relative">
+    <div className="min-h-screen bg-white text-slate-900 font-sans selection:bg-slate-900 selection:text-white relative">
       
       {/* Floating Navbar */}
       <Navbar 
@@ -31,8 +34,6 @@ export function App() {
       <main>
         {/* Hero & Interactive Telemetry Viewport Switcher */}
         <Hero 
-          activeMode={activeMode}
-          onModeChange={setActiveMode}
           onOpenTrial={() => setIsTrialOpen(true)}
           onOpenWalkthrough={() => setIsWalkthroughOpen(true)}
         />
@@ -59,7 +60,8 @@ export function App() {
       <TrialModal
         isOpen={isTrialOpen}
         onClose={() => setIsTrialOpen(false)}
-        onSuperAdminLogin={() => setIsSuperAdminLoggedIn(true)}
+        onTenantLogin={() => setUserRole('tenant')}
+        onSuperAdminLogin={() => setUserRole('superadmin')}
       />
 
     </div>

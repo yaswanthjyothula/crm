@@ -43,7 +43,7 @@ export const GymSuperAdminPanel: React.FC<GymSuperAdminPanelProps> = ({ onSignOu
   // Add Tenant Modal state
   const [isAddTenantOpen, setIsAddTenantOpen] = useState(false);
   const [newTenantName, setNewTenantName] = useState('');
-  const [newCategory, setNewCategory] = useState<'Gym & Fitness' | 'Dine-in Restaurant'>('Gym & Fitness');
+  const [newCategory, setNewCategory] = useState<'Gym & Fitness'>('Gym & Fitness');
   const [newOwnerName, setNewOwnerName] = useState('');
   const [newOwnerEmail, setNewOwnerEmail] = useState('');
   const [newBranchCount, setNewBranchCount] = useState<number>(3);
@@ -113,8 +113,11 @@ export const GymSuperAdminPanel: React.FC<GymSuperAdminPanelProps> = ({ onSignOu
   ] as const;
 
   return (
-    <div className="min-h-screen bg-slate-100 text-slate-900 font-sans flex selection:bg-brand-500 selection:text-white">
+    <div className="min-h-screen bg-white text-slate-900 font-sans flex selection:bg-slate-900 selection:text-white relative overflow-x-hidden">
       
+      {/* Landing Page Ambient Radial Glow Spotlight */}
+      <div className="fixed top-10 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-slate-900/10 via-slate-800/5 to-slate-900/10 blur-[130px] rounded-full pointer-events-none -z-10" />
+
       {/* Mobile Sidebar Overlay */}
       {isMobileSidebarOpen && (
         <div 
@@ -124,28 +127,28 @@ export const GymSuperAdminPanel: React.FC<GymSuperAdminPanelProps> = ({ onSignOu
       )}
 
       {/* LEFT SIDEBAR NAVIGATION MENU */}
-      <aside className={`fixed lg:sticky top-0 left-0 z-50 h-screen w-72 bg-slate-950 text-white p-5 flex flex-col justify-between border-r border-slate-800 transition-transform duration-300 shrink-0 ${
+      <aside className={`fixed lg:sticky top-0 left-0 z-50 h-screen w-72 bg-white/90 backdrop-blur-md text-slate-900 p-5 flex flex-col justify-between border-r border-slate-200 shadow-lg transition-transform duration-300 shrink-0 ${
         isMobileSidebarOpen ? 'translate-x-0' : '-translate-x-full lg:translate-x-0'
       }`}>
         <div className="space-y-6">
           
           {/* Logo & Super Admin Badge */}
-          <div className="space-y-3 pb-2 border-b border-slate-800">
+          <div className="space-y-3 pb-2 border-b border-slate-200">
             <div className="flex items-center justify-between">
               <Logo size="sm" />
               <button 
                 onClick={() => setIsMobileSidebarOpen(false)}
-                className="lg:hidden p-1 rounded-lg bg-slate-900 text-slate-400 hover:text-white"
+                className="lg:hidden p-1 rounded-lg bg-slate-100 text-slate-600 hover:text-slate-900"
               >
                 <X className="w-5 h-5" />
               </button>
             </div>
             <div className="flex items-center gap-2">
-              <span className="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-indigo-500/20 text-brand-300 border border-indigo-500/30 flex items-center gap-1">
-                <Lock className="w-3 h-3 text-brand-400" />
+              <span className="px-2.5 py-1 rounded-full text-[10px] font-extrabold bg-slate-900 text-white shadow-sm flex items-center gap-1">
+                <Lock className="w-3 h-3 text-slate-300" />
                 GYM SUPER ADMIN
               </span>
-              <span className="text-[10px] font-mono text-slate-400 truncate">
+              <span className="text-[10px] font-mono text-slate-500 truncate">
                 admin@gmail.com
               </span>
             </div>
@@ -170,13 +173,13 @@ export const GymSuperAdminPanel: React.FC<GymSuperAdminPanelProps> = ({ onSignOu
                   }}
                   className={`w-full px-3.5 py-2.5 rounded-xl text-xs font-bold flex items-center justify-between transition-all group ${
                     isActive
-                      ? 'bg-gradient-to-r from-brand-600 to-indigo-600 text-white shadow-lg shadow-brand-500/20'
-                      : 'text-slate-400 hover:text-white hover:bg-slate-900'
+                      ? 'bg-slate-900 text-white shadow-md shadow-slate-900/20'
+                      : 'text-slate-600 hover:text-slate-900 hover:bg-slate-100'
                   }`}
                 >
                   <div className="flex items-center gap-2.5">
                     <IconComp className={`w-4 h-4 transition-colors ${
-                      isActive ? 'text-white' : 'text-slate-400 group-hover:text-brand-400'
+                      isActive ? 'text-white' : 'text-slate-500 group-hover:text-slate-900'
                     }`} />
                     <span>{item.label}</span>
                   </div>
@@ -184,7 +187,7 @@ export const GymSuperAdminPanel: React.FC<GymSuperAdminPanelProps> = ({ onSignOu
                   <span className={`text-[10px] px-2 py-0.5 rounded-full font-mono font-bold ${
                     isActive
                       ? 'bg-white/20 text-white'
-                      : 'bg-slate-900 text-slate-400 group-hover:text-slate-200'
+                      : 'bg-white text-slate-600 border border-slate-200'
                   }`}>
                     {item.badge}
                   </span>
@@ -196,14 +199,18 @@ export const GymSuperAdminPanel: React.FC<GymSuperAdminPanelProps> = ({ onSignOu
         </div>
 
         {/* Sidebar Footer System Status & Sign Out */}
-        <div className="pt-4 border-t border-slate-800 space-y-3">
-          <div className="p-3 rounded-xl bg-slate-900 border border-slate-800 space-y-1">
+        <div className="pt-4 border-t border-slate-200 space-y-3">
+          <div className="p-3 rounded-xl bg-white border border-slate-200 shadow-xs space-y-1">
             <div className="flex items-center justify-between text-[11px]">
-              <span className="text-slate-400 font-medium">Turnstiles & Biometrics</span>
-              <span className="text-emerald-400 font-bold font-mono">100% ONLINE</span>
+              <span className="text-slate-500 font-medium flex items-center gap-1.5">
+                <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+                Supabase Database
+              </span>
+              <span className="text-emerald-600 font-bold font-mono">100% CONNECTED</span>
             </div>
-            <div className="w-full h-1 bg-slate-800 rounded-full overflow-hidden">
-              <div className="h-full bg-emerald-500 rounded-full w-full" />
+            <div className="text-[10px] text-slate-500 font-mono flex items-center justify-between pt-0.5">
+              <span>Project: xtfusqlrosinylhbdljd</span>
+              <span className="text-emerald-600 font-bold">344ms</span>
             </div>
           </div>
 
@@ -212,7 +219,7 @@ export const GymSuperAdminPanel: React.FC<GymSuperAdminPanelProps> = ({ onSignOu
             whileTap={{ scale: 0.98 }}
             transition={springConfig}
             onClick={onSignOut}
-            className="w-full py-2.5 rounded-xl bg-slate-900 hover:bg-red-500/10 hover:text-red-400 text-slate-300 font-bold text-xs flex items-center justify-center gap-2 border border-slate-800 transition-colors"
+            className="w-full py-2.5 rounded-xl bg-white hover:bg-red-50 hover:text-red-600 text-slate-700 font-bold text-xs flex items-center justify-center gap-2 border border-slate-200 shadow-xs transition-colors"
           >
             <LogOut className="w-4 h-4" />
             <span>Sign Out Admin</span>
@@ -278,7 +285,7 @@ export const GymSuperAdminPanel: React.FC<GymSuperAdminPanelProps> = ({ onSignOu
                   whileTap={{ scale: 0.97 }}
                   transition={springConfig}
                   onClick={() => setIsAddTenantOpen(true)}
-                  className="px-5 py-3 rounded-2xl bg-gradient-to-r from-brand-500 via-indigo-600 to-indigo-700 text-white font-extrabold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-brand-500/25 border border-brand-400/30"
+                  className="px-5 py-3 rounded-2xl bg-slate-900 hover:bg-slate-800 text-white font-extrabold text-xs sm:text-sm flex items-center gap-2 shadow-lg shadow-slate-900/20 border border-slate-700/50"
                 >
                   <Plus className="w-4 h-4" />
                   <span>+ Add New Tenant Account</span>
@@ -407,7 +414,7 @@ export const GymSuperAdminPanel: React.FC<GymSuperAdminPanelProps> = ({ onSignOu
                             <td className="py-3.5 px-4 text-right">
                               <button
                                 onClick={() => handleToggleTenantStatus(t.id)}
-                                className="px-2.5 py-1 rounded-lg bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-[11px] border border-slate-300 transition-colors"
+                                className="px-2.5 py-1 rounded-lg bg-white hover:bg-slate-50 text-slate-800 font-bold text-[11px] border border-slate-200 transition-colors shadow-xs"
                               >
                                 {t.status === 'Active' ? 'Suspend' : 'Activate'}
                               </button>
@@ -418,18 +425,18 @@ export const GymSuperAdminPanel: React.FC<GymSuperAdminPanelProps> = ({ onSignOu
                         <tr>
                           <td colSpan={8} className="py-12 text-center">
                             <div className="flex flex-col items-center justify-center space-y-3">
-                              <div className="w-12 h-12 rounded-full bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-400">
+                              <div className="w-12 h-12 rounded-full bg-white border border-slate-200 shadow-xs flex items-center justify-center text-slate-400">
                                 <Building2 className="w-6 h-6" />
                               </div>
                               <div>
                                 <h4 className="font-bold text-sm text-slate-900">No SaaS Tenants Found</h4>
                                 <p className="text-xs text-slate-500 max-w-sm mt-0.5">
-                                  There are no active gym or restaurant tenant accounts. Click below to provision your first tenant.
+                                  There are no active gym tenant accounts. Click below to provision your first tenant.
                                 </p>
                               </div>
                               <button
                                 onClick={() => setIsAddTenantOpen(true)}
-                                className="px-4 py-2 rounded-xl bg-brand-600 hover:bg-brand-700 text-white font-bold text-xs flex items-center gap-1.5 shadow-md"
+                                className="px-4 py-2 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs flex items-center gap-1.5 shadow-md"
                               >
                                 <Plus className="w-4 h-4" />
                                 <span>+ Add First Tenant Account</span>
@@ -780,8 +787,7 @@ export const GymSuperAdminPanel: React.FC<GymSuperAdminPanelProps> = ({ onSignOu
                       onChange={(e) => setNewCategory(e.target.value as any)}
                       className="w-full bg-slate-50 border border-slate-200 rounded-xl px-3 py-2.5 text-xs text-slate-900 focus:outline-none focus:border-brand-500"
                     >
-                      <option value="Gym & Fitness">Gym & Fitness</option>
-                      <option value="Dine-in Restaurant">Dine-in Restaurant</option>
+                      <option value="Gym & Fitness">Gym & Fitness Club</option>
                     </select>
                   </div>
 
@@ -853,7 +859,7 @@ export const GymSuperAdminPanel: React.FC<GymSuperAdminPanelProps> = ({ onSignOu
                 <div className="pt-2">
                   <button
                     type="submit"
-                    className="w-full py-3 rounded-xl bg-gradient-to-r from-brand-500 via-indigo-600 to-indigo-700 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-brand-500/25 border border-brand-400/30"
+                    className="w-full py-3 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shadow-lg shadow-slate-900/25 border border-slate-700/50"
                   >
                     <Check className="w-4 h-4" />
                     <span>Provision Tenant Account & Deploy Cluster</span>

@@ -49,11 +49,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTrial }) => {
         {/* Center Nav Links */}
         <div className="hidden md:flex items-center gap-6 text-sm font-medium text-slate-600">
           <a href="#" className="hover:text-slate-900 transition-colors relative py-1 group">
-            For Gyms
-            <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-500 group-hover:w-full transition-all duration-300 rounded-full" />
-          </a>
-          <a href="#" className="hover:text-slate-900 transition-colors relative py-1 group">
-            For Restaurants
+            For Gyms & Fitness Clubs
             <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-brand-500 group-hover:w-full transition-all duration-300 rounded-full" />
           </a>
           <a href="#pricing" className="hover:text-slate-900 transition-colors relative py-1 group">
@@ -75,14 +71,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTrial }) => {
           </motion.button>
 
           <motion.button
-            whileHover={{ scale: 1.04, boxShadow: "0 0 25px rgba(79, 70, 229, 0.3)" }}
+            whileHover={{ scale: 1.04, boxShadow: "0 0 25px rgba(15, 23, 42, 0.3)" }}
             whileTap={{ scale: 0.96 }}
             transition={springConfig}
             onClick={onOpenTrial}
-            className="relative group overflow-hidden rounded-full bg-gradient-to-r from-brand-500 via-indigo-600 to-indigo-700 px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold text-white shadow-lg shadow-brand-500/25 border border-brand-400/30 focus:outline-none"
+            className="relative group overflow-hidden rounded-full bg-slate-900 hover:bg-slate-800 px-4 sm:px-5 py-2 text-xs sm:text-sm font-semibold text-white shadow-lg shadow-slate-900/25 border border-slate-700/50 focus:outline-none"
           >
             <span className="relative z-10 flex items-center gap-1.5">
-              <Sparkles className="w-3.5 h-3.5 text-indigo-200 animate-pulse" />
+              <Sparkles className="w-3.5 h-3.5 text-slate-300 animate-pulse" />
               Launch Free Trial
               <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
             </span>

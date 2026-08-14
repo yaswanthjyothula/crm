@@ -6,7 +6,7 @@
   :root {
     --bg-obsidian: #FFFFFF;
     --bg-card: #F8FAFC;
-    --accent-indigo: #4F46E5;
+    --accent-indigo: #0F172A;
     --accent-emerald: #059669;
     --accent-amber: #D97706;
   }
@@ -51,7 +51,7 @@
   }
 
   .glow-indigo {
-    box-shadow: 0 0 40px -5px rgba(79, 70, 229, 0.2);
+    box-shadow: 0 0 40px -5px rgba(15, 23, 42, 0.2);
   }
 
   .text-gradient {
@@ -61,7 +61,7 @@
   }
 
   .text-gradient-indigo {
-    background: linear-gradient(135deg, #4F46E5 0%, #4338CA 50%, #3730A3 100%);
+    background: linear-gradient(135deg, #0F172A 0%, #1E293B 50%, #334155 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
   }
@@ -72,7 +72,7 @@
   }
 
   .custom-scrollbar::-webkit-scrollbar-track {
-    background: rgba(241, 245, 249, 0.8);
+    background: #FFFFFF;
   }
 
   .custom-scrollbar::-webkit-scrollbar-thumb {

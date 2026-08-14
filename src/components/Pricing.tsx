@@ -14,14 +14,14 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenTrial }) => {
   const tiers = [
     {
       id: 'tier-studio',
-      name: 'Studio / Cafe',
-      description: 'Perfect for single-location boutique gyms or local dine-in cafes.',
+      name: 'Boutique Gym',
+      description: 'Perfect for single-location boutique fitness clubs or studios.',
       monthlyPrice: 49,
       annualPrice: 39,
       highlighted: false,
       features: [
-        'Single venue location',
-        'Up to 500 active guest profiles',
+        'Single gym location',
+        'Up to 500 active member profiles',
         '1-Second QR tablet check-ins',
         'Basic SMS check-in logs',
         'Standard email support',
@@ -30,26 +30,26 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenTrial }) => {
     },
     {
       id: 'tier-pro',
-      name: 'Pro Operator',
-      description: 'Designed for fast-growing fitness clubs & high-volume dining rooms.',
+      name: 'Pro Gym Operator',
+      description: 'Designed for fast-growing fitness clubs & multi-room facilities.',
       monthlyPrice: 99,
       annualPrice: 79,
       highlighted: true,
       badge: 'Most Popular',
       features: [
-        'Unlimited guest profiles',
+        'Unlimited member profiles',
         'Full Meta WhatsApp Retention Engine',
-        'Interactive SVG 12-table floor map',
-        'Automated inactivity drip triggers',
+        'Turnstile biometric gate rules',
+        'Automated inactivity dropout detector',
         'Multi-staff permissions & PINs',
-        'Real-time capacity telemetry',
+        'Real-time floor capacity telemetry',
         '24/7 Priority support'
       ]
     },
     {
       id: 'tier-enterprise',
-      name: 'Enterprise / Franchise',
-      description: 'Built for multi-branch chains, franchises, and enterprise venues.',
+      name: 'Enterprise Franchise',
+      description: 'Built for multi-branch gym chains, franchises, and enterprise networks.',
       monthlyPrice: 199,
       annualPrice: 159,
       highlighted: false,
@@ -94,7 +94,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenTrial }) => {
           <button
             onClick={() => setIsAnnual(true)}
             className={`relative px-4 py-2 rounded-full text-xs sm:text-sm font-semibold transition-colors flex items-center gap-1.5 ${
-              isAnnual ? 'bg-gradient-to-r from-brand-500 to-indigo-600 text-white shadow-md' : 'text-slate-600 hover:text-slate-900'
+              isAnnual ? 'bg-slate-900 text-white shadow-md' : 'text-slate-600 hover:text-slate-900'
             }`}
           >
             <span>Annual Billing</span>
@@ -117,13 +117,13 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenTrial }) => {
               transition={springConfig}
               className={`rounded-3xl p-6 sm:p-8 flex flex-col justify-between transition-all duration-300 relative ${
                 tier.highlighted
-                  ? 'glass-panel bg-white border-2 border-brand-500 shadow-2xl shadow-brand-500/15 scale-[1.03]'
+                  ? 'glass-panel bg-white border-2 border-slate-900 shadow-2xl shadow-slate-900/15 scale-[1.03]'
                   : 'glass-panel bg-white/90 border border-slate-200 hover:border-slate-300 shadow-lg'
               }`}
             >
               {tier.highlighted && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full bg-gradient-to-r from-brand-500 to-indigo-600 text-white text-[11px] font-extrabold uppercase tracking-wider shadow-md flex items-center gap-1">
-                  <Sparkles className="w-3 h-3 text-indigo-200 animate-pulse" />
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 px-3.5 py-1 rounded-full bg-slate-900 text-white text-[11px] font-extrabold uppercase tracking-wider shadow-md flex items-center gap-1">
+                  <Sparkles className="w-3 h-3 text-slate-300 animate-pulse" />
                   {tier.badge}
                 </div>
               )}
@@ -152,7 +152,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenTrial }) => {
                     {tier.features.map((feat, idx) => (
                       <li key={idx} className="flex items-start gap-2.5 text-xs text-slate-700">
                         <div className={`w-4 h-4 rounded-full flex items-center justify-center shrink-0 mt-0.5 ${
-                          tier.highlighted ? 'bg-brand-500/10 text-brand-600' : 'bg-slate-100 text-emerald-600'
+                          tier.highlighted ? 'bg-slate-900/10 text-slate-900' : 'bg-slate-100 text-emerald-600'
                         }`}>
                           <Check className="w-3 h-3" />
                         </div>
@@ -172,7 +172,7 @@ export const Pricing: React.FC<PricingProps> = ({ onOpenTrial }) => {
                   onClick={onOpenTrial}
                   className={`w-full py-3 rounded-xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 transition-all ${
                     tier.highlighted
-                      ? 'bg-gradient-to-r from-brand-500 via-indigo-600 to-indigo-700 text-white shadow-lg shadow-brand-500/25 border border-brand-400/30'
+                      ? 'bg-slate-900 hover:bg-slate-800 text-white shadow-lg shadow-slate-900/25 border border-slate-700/50'
                       : 'glass-button text-slate-800 hover:text-slate-900 border-slate-300'
                   }`}
                 >

@@ -43,7 +43,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTrial }) => {
           </div>
 
           <h2 className="font-display text-3xl sm:text-5xl font-extrabold tracking-tight text-white leading-tight">
-            Upgrade your venue's front-line experience today.
+            Upgrade your gym's front-line experience today.
           </h2>
 
           {/* Inline Email Signup Form */}
@@ -73,7 +73,7 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTrial }) => {
               className={`w-full sm:w-auto px-6 py-3 rounded-2xl font-bold text-xs sm:text-sm flex items-center justify-center gap-2 shrink-0 transition-all shadow-lg ${
                 subscribed 
                   ? 'bg-emerald-500 text-white shadow-emerald-500/30' 
-                  : 'bg-gradient-to-r from-brand-500 to-indigo-600 text-white shadow-brand-500/30'
+                  : 'bg-slate-800 hover:bg-slate-700 text-white border border-slate-700 shadow-slate-950/40'
               }`}
             >
               {subscribed ? (
@@ -99,30 +99,18 @@ export const Footer: React.FC<FooterProps> = ({ onOpenTrial }) => {
       {/* Footer Navigation & Credits */}
       <div className="pt-8 border-t border-slate-200 flex flex-col md:flex-row items-center justify-between gap-6 text-xs text-slate-500">
         
-        {/* Brand & Status */}
+        {/* Brand */}
         <div className="flex items-center gap-4">
           <div className="flex items-center gap-2">
             <Logo size="sm" />
           </div>
-          <span className="h-4 w-px bg-slate-300" />
-          <div className="flex items-center gap-1.5 text-emerald-600 font-mono">
-            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-            <span>All systems operational (99.99% Uptime)</span>
-          </div>
         </div>
 
-        {/* Links */}
-        <div className="flex items-center gap-6">
-          <a href="#features" className="hover:text-slate-900 transition-colors">Features</a>
-          <a href="#pricing" className="hover:text-slate-900 transition-colors">Pricing</a>
-          <a href="#" className="hover:text-slate-900 transition-colors">Privacy Policy</a>
-          <a href="#" className="hover:text-slate-900 transition-colors">Terms of Service</a>
-          <a href="#" className="hover:text-slate-900 transition-colors">API Docs</a>
-        </div>
+
 
         {/* Copyright */}
         <div className="flex items-center gap-1">
-          <span>© {new Date().getFullYear()} PulseServe Inc. Apple HIG Inspired Design.</span>
+          <span>© {new Date().getFullYear()} PulseServe Inc.</span>
         </div>
 
       </div>

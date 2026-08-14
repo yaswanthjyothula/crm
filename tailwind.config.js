@@ -10,17 +10,17 @@ export default {
         obsidian: {
           950: '#F8FAFC', // Crisp Light Surface
           900: '#FFFFFF', // Pure White Base
-          850: '#F1F5F9',
+          850: '#FFFFFF', // Subscription Card Pure White
           800: '#F8FAFC', // Light Card Surface
           700: '#E2E8F0',
           600: '#CBD5E1',
         },
         brand: {
-          500: '#4F46E5', // Electric Indigo Primary
-          400: '#6366F1',
-          600: '#4338CA',
-          700: '#3730A3',
-          glow: 'rgba(79, 70, 229, 0.15)',
+          500: '#0F172A', // #0F172A Obsidian Slate Primary
+          400: '#1E293B',
+          600: '#0F172A',
+          700: '#020617',
+          glow: 'rgba(15, 23, 42, 0.15)',
         },
         emerald: {
           500: '#059669', // Active / Success

@@ -1,55 +1,18 @@
 import React from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { ModeType } from '../types/crm';
-import { ModeSwitcher } from './ModeSwitcher';
-import { ShowcaseViewport } from './ShowcaseViewport';
+import { motion } from 'framer-motion';
 import { ArrowRight } from 'lucide-react';
 
 interface HeroProps {
-  activeMode: ModeType;
-  onModeChange: (mode: ModeType) => void;
   onOpenTrial: () => void;
   onOpenWalkthrough?: () => void;
 }
 
-export const Hero: React.FC<HeroProps> = ({
-  activeMode,
-  onModeChange,
-  onOpenTrial
-}) => {
+export const Hero: React.FC<HeroProps> = ({ onOpenTrial }) => {
   const springConfig = { type: 'spring' as const, stiffness: 300, damping: 30 };
 
   return (
     <section className="relative pt-28 sm:pt-36 pb-16 sm:pb-24 px-4 sm:px-6 max-w-7xl mx-auto overflow-hidden">
       
-      {/* Dynamic Ambient Background Image Crossfade */}
-      <div className="absolute inset-0 -z-20 overflow-hidden pointer-events-none">
-        <AnimatePresence mode="wait">
-          {activeMode === 'gym' ? (
-            <motion.div
-              key="bg-gym"
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 0.18, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.05 }}
-              transition={{ duration: 0.6 }}
-              className="absolute inset-0 bg-cover bg-center rounded-3xl"
-              style={{ backgroundImage: `url('/gym-bg.png')` }}
-            />
-          ) : (
-            <motion.div
-              key="bg-restaurant"
-              initial={{ opacity: 0, scale: 1.05 }}
-              animate={{ opacity: 0.18, scale: 1 }}
-              exit={{ opacity: 0, scale: 1.05 }}
-              transition={{ duration: 0.6 }}
-              className="absolute inset-0 bg-cover bg-center rounded-3xl"
-              style={{ backgroundImage: `url('/restaurant-bg.png')` }}
-            />
-          )}
-        </AnimatePresence>
-        <div className="absolute inset-0 bg-gradient-to-b from-white via-white/80 to-white" />
-      </div>
-
       {/* Background Radial Glow Spotlight */}
       <div className="absolute top-10 left-1/2 -translate-x-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-brand-500/15 via-indigo-500/10 to-blue-400/10 blur-[130px] rounded-full pointer-events-none -z-10" />
 
@@ -73,7 +36,7 @@ export const Hero: React.FC<HeroProps> = ({
           transition={{ ...springConfig, delay: 0.2 }}
           className="text-base sm:text-lg text-slate-600 max-w-2xl font-normal leading-relaxed"
         >
-          Cut check-in wait times to zero and prevent customer churn. PulseServe unifies lightning-fast QR scanning, live table turnover maps, and smart re-engagement triggers.
+          Cut check-in wait times to zero and prevent member churn. PulseServe unifies lightning-fast QR scanning, live member telemetry, and smart re-engagement triggers for gyms & fitness clubs.
         </motion.p>
 
         {/* Primary CTA */}
@@ -84,26 +47,16 @@ export const Hero: React.FC<HeroProps> = ({
           className="flex justify-center pt-2 w-full"
         >
           <motion.button
-            whileHover={{ scale: 1.04, boxShadow: "0 0 30px rgba(79, 70, 229, 0.3)" }}
+            whileHover={{ scale: 1.04, boxShadow: "0 0 30px rgba(15, 23, 42, 0.3)" }}
             whileTap={{ scale: 0.96 }}
             transition={springConfig}
             onClick={onOpenTrial}
-            className="px-8 py-3.5 rounded-full bg-gradient-to-r from-brand-500 via-indigo-600 to-indigo-700 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-xl shadow-brand-500/20 border border-brand-400/30 group focus:outline-none"
+            className="px-8 py-3.5 rounded-full bg-slate-900 hover:bg-slate-800 text-white font-bold text-sm sm:text-base flex items-center justify-center gap-2 shadow-xl shadow-slate-900/20 border border-slate-700/50 group focus:outline-none"
           >
             <span>Claim Your 14-Day Free Trial</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </motion.button>
         </motion.div>
-      </div>
-
-      {/* Segmented Mode Switcher */}
-      <div className="mt-12 mb-8 flex justify-center">
-        <ModeSwitcher activeMode={activeMode} onModeChange={onModeChange} />
-      </div>
-
-      {/* Image Showcase Viewport Area */}
-      <div className="mt-4">
-        <ShowcaseViewport activeMode={activeMode} />
       </div>
 
     </section>

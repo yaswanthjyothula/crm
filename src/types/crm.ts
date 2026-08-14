@@ -86,7 +86,7 @@ export interface AuditLog {
 export interface Tenant {
   id: string;
   name: string;
-  category: 'Gym & Fitness' | 'Dine-in Restaurant';
+  category: 'Gym & Fitness';
   ownerName: string;
   ownerEmail: string;
   branchCount: number;
