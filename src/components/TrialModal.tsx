@@ -155,7 +155,7 @@ export const TrialModal: React.FC<TrialModalProps> = ({
                   </div>
                 </div>
 
-                <div className="pt-2">
+                <div className="pt-2 flex flex-col gap-2">
                   <motion.button
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
@@ -166,6 +166,18 @@ export const TrialModal: React.FC<TrialModalProps> = ({
                     <span>{authMode === 'signin' ? 'Sign In to PulseServe' : 'Create Free Account'}</span>
                     <ArrowRight className="w-4 h-4" />
                   </motion.button>
+
+                  <button
+                    type="button"
+                    onClick={() => {
+                      onSuperAdminLogin();
+                      onClose();
+                    }}
+                    className="w-full py-2.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-800 font-bold text-xs flex items-center justify-center gap-2 border border-slate-300 transition-colors"
+                  >
+                    <Lock className="w-3.5 h-3.5 text-slate-600" />
+                    <span>⚡ Launch Gym Super Admin Panel</span>
+                  </button>
                 </div>
 
 

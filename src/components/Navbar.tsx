@@ -6,9 +6,10 @@ import { Logo } from './Logo';
 interface NavbarProps {
   onOpenTrial: () => void;
   onOpenWalkthrough: () => void;
+  onOpenSuperAdmin?: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenTrial }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenTrial, onOpenSuperAdmin }) => {
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -60,12 +61,24 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenTrial }) => {
 
         {/* Right CTA Actions */}
         <div className="flex items-center gap-2 sm:gap-3">
+          {onOpenSuperAdmin && (
+            <motion.button 
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              transition={springConfig}
+              onClick={onOpenSuperAdmin}
+              className="inline-flex text-xs font-bold text-slate-900 bg-slate-100 hover:bg-slate-200 border border-slate-300 px-3 py-1.5 rounded-full transition-colors"
+            >
+              Super Admin
+            </motion.button>
+          )}
+
           <motion.button 
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             transition={springConfig}
             onClick={onOpenTrial}
-            className="hidden sm:inline-flex text-xs sm:text-sm font-semibold text-slate-700 hover:text-slate-900 px-3.5 py-1.5 rounded-full transition-colors focus:outline-none"
+            className="hidden sm:inline-flex text-xs sm:text-sm font-semibold text-slate-700 hover:text-slate-900 px-3 py-1.5 rounded-full transition-colors focus:outline-none"
           >
             Sign In
           </motion.button>

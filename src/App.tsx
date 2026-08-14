@@ -28,6 +28,7 @@ export function App() {
       <Navbar 
         onOpenTrial={() => setIsTrialOpen(true)}
         onOpenWalkthrough={() => setIsWalkthroughOpen(true)}
+        onOpenSuperAdmin={() => setUserRole('superadmin')}
       />
 
       {/* Main Content Sections */}
