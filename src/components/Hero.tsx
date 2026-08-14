@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Sparkles, ShieldCheck, Zap } from 'lucide-react';
+import { ArrowRight, Sparkles, ShieldCheck } from 'lucide-react';
 
 interface HeroProps {
   onOpenTrial: () => void;
@@ -18,24 +18,7 @@ export const Hero: React.FC<HeroProps> = ({ onOpenTrial }) => {
 
       <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-6">
         
-        {/* Floating Animated Badge */}
-        <motion.div
-          initial={{ opacity: 0, y: -15, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          transition={{ ...springConfig, delay: 0.05 }}
-          className="animate-float"
-        >
-          <div className="px-4 py-1.5 rounded-full bg-white/90 backdrop-blur-md border border-slate-200 shadow-md text-xs font-bold text-slate-800 flex items-center gap-2">
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
-            </span>
-            <span className="flex items-center gap-1">
-              <Zap className="w-3.5 h-3.5 text-slate-900" />
-              <span>0.38s Sub-Second Check-in Telemetry Active</span>
-            </span>
-          </div>
-        </motion.div>
+
 
         {/* Display Headline */}
         <motion.h1
